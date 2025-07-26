@@ -19,10 +19,10 @@
             </div>
             <div class="botones-login-container">
                 <a href="iniciosesion.jsp" class="botones-sesion-login">Iniciar sesión</a>
-                <a href="registousuario.jsp" class="botones-sesion-login">Regístrate</a>
+                <a href="registrousuario.jsp" class="botones-sesion-login">Regístrate</a>
             </div>
         </div>
-      </header>
+    </header>
     <body>
         <div class="prototipo-container">
             <img src="Image/Prototipo.png" alt="Imagen Software" class="">

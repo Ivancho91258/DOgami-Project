@@ -16,7 +16,7 @@
                 <div class="vacio-container"></div>
                 <div class="titulo-container">
                     <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
-                    <h1>DOgami</h1>        
+                    <h1>DOgami</h1>
                 </div>
                 <div class="vacio-container"></div>
             </div>
