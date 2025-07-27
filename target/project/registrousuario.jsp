@@ -35,23 +35,36 @@
             <div class="texto-interno2">
                 <h2>Inicia sesión con otro correo</h2>
             </div>
+
+            <%
+    String error = (String) request.getAttribute("mensajeError");
+    if (error != null) {
+%>
+    <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 15px; text-align: center;">
+        <%= error %>
+    </div>
+<%
+    }
+%>
             
-            <form action="registerUser" method="post">
-                <div class="elementos-internos1">
-                    <input type="text" placeholder="Nombres" name="nombres" required/><input type="text" placeholder="Apellidos" name="apellidos" required/></div>
-                <div class="email-container">
-                    <input type="email" placeholder="Dirección de correo" name="correo" required/>
-                </div>
-                <div class="password-container">
-                    <input type="password" placeholder="Ingresa una contraseña, mínimo 8 caracteres" name="contraseña" required/>
-                </div>
-                <div class="texto-interno3">
-                    <h2>Usa al menos una letra mayúscula, un número y un símbolo especial</h2>
-                </div>
-                <div class="elementos-internos">
-                    <input type="submit" value="Crea tu cuenta" id="boton-crear-cuenta" class="cuentaboton">
-                </div>
-            </form>
+                <form action="register" method="post">
+                    <div class="elementos-internos1">
+                        <input type="text" placeholder="Nombres" name="nombres" required/>
+                        <input type="text" placeholder="Apellidos" name="apellidos" required/>
+                    </div>
+                    <div class="email-container">
+                        <input type="email" placeholder="Dirección de correo" name="correo" required/>
+                    </div>
+                    <div class="password-container">
+                        <input type="password" placeholder="Ingresa una contraseña..." name="contraseña" required/>
+                    </div>
+                    <div class="texto-interno3">
+                        <h2>Usa al menos una letra mayúscula, un número y un símbolo especial</h2>
+                    </div>
+                    <div class="elementos-internos">
+                        <input type="submit" value="Crea tu cuenta" id="boton-crear-cuenta" class="cuentaboton">
+                    </div>
+                </form>
             </div>
         </body>
     <footer>

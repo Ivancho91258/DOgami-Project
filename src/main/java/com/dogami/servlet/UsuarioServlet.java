@@ -7,81 +7,106 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet("/login")
-
+// Anotación para manejar ambas URLs
+@WebServlet({"/login", "/register"})
 public class UsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Obtenemos la URL para saber qué acción tomar
+        String path = request.getServletPath();
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        // Decidimos qué método llamar
+        if ("/register".equals(path)) {
+            handleRegister(request, response);
+        } else {
+            handleLogin(request, response);
+        }
+    }
 
+
+    //Maneja la lógica de inicio de sesión.
+
+    private void handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
-
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        boolean loginExitoso = false;
-
-        try {
-
-            conn = DBConnection.getConnection();
-
-            String sql = "SELECT COUNT(*) FROM usuario WHERE correo = ? AND contraseña = ?";
-            pstmt = conn.prepareStatement(sql);
+        
+        String sql = "SELECT COUNT(*) FROM usuario WHERE correo = ? AND contraseña = ?";
+        
+        // Usamos try-with-resources para el manejo automático de recursos
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
             pstmt.setString(1, correo);
-            pstmt.setString(2, contraseña);
-
-            rs = pstmt.executeQuery();
-    
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                if (count == 1) {
-                    loginExitoso = true;
+            pstmt.setString(2, contraseña); // ⚠️ ADVERTENCIA: Contraseña en texto plano
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next() && rs.getInt(1) == 1) {
+                    // Login exitoso
+                    request.getSession().setAttribute("loggedInUserCorreo", correo);
+                    response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
+                } else {
+                    // Login fallido
+                    request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
+                    request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
                 }
             }
-
-            if (loginExitoso) {
-                request.setAttribute("correo", correo);
-                request.getSession().setAttribute("loggedInUserCorreo", correo);
-                System.out.println("DEBUG (Login): Inicio de sesión exitoso. Redirigiendo a indexlogin.jsp");
-                response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
-            } else {
-                request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
-                System.out.println("DEBUG (Login): Inicio de sesión fallido. Redirigiendo a iniciosesion.jsp");
-                request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
-            }
-
         } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
+            request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+        }
+    }
 
-            out.println("<h2>Error de base de datos durante el ingreso:</h2>");
-            out.println("<p>" + e.getMessage() + "</p>");
-            e.printStackTrace(out);
-            System.err.println("Error de SQL en LoginServlet: " + e.getMessage());
-        } catch (Exception e) {
+    /**
+     * Maneja la lógica de registro de nuevos usuarios.
+     */
+    private void handleRegister(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String nombres = request.getParameter("nombres");
+        String apellidos = request.getParameter("apellidos");
+        String correo = request.getParameter("correo");
+        String contraseña = request.getParameter("contraseña");
+        
+        String nombreCompleto = nombres + " " + apellidos;
+        
+        String sql = "INSERT INTO usuario (nombre, correo, contraseña, tipo_de_licencia) VALUES (?, ?, ?, ?)";
+        
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            out.println("<h2>Ocurrió un error inesperado:</h2>");
-            out.println("<p>" + e.getMessage() + "</p>");
-            e.printStackTrace(out);
-            System.err.println("Error inesperado en LoginServlet: " + e.getMessage());
-        } finally {
+            pstmt.setString(1, nombreCompleto);
+            pstmt.setString(2, correo);
+            pstmt.setString(3, contraseña);
+            pstmt.setString(4, "Gratuita");
             
-            try {
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (conn != null) DBConnection.closeConnection(conn);
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar recursos en LoginServlet: " + e.getMessage());
+            int rowsAffected = pstmt.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                // Registro exitoso, redirige al login
+                System.out.println("Usuario creado exitosamente: " + nombreCompleto);
+                request.setAttribute("mensajeExito", "¡Cuenta creada! Por favor, inicia sesión.");
+                request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+            } else {
+                System.err.println("Error al crear el usuario: filas afectadas = " + rowsAffected);
+                request.setAttribute("mensajeError", "No se pudo crear la cuenta. Inténtalo de nuevo.");
+                request.getRequestDispatcher("registrousuario.jsp").forward(request, response);
             }
+        } catch (SQLException e) {
+            // Maneja error de correo duplicado (código para PostgreSQL: 23505)
+            if ("23505".equals(e.getSQLState())) {
+                request.setAttribute("mensajeError", "El correo electrónico ya está registrado.");
+            } else {
+                e.printStackTrace();
+                request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
+            }
+            request.getRequestDispatcher("registrousuario.jsp").forward(request, response);
         }
     }
 }
