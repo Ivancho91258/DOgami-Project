@@ -8,6 +8,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "usuario")
 public class usuario {
+    public usuario() {
+    }
 
         @Id
         @Column(name = "id")

@@ -16,6 +16,6 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="com.dogami.model.Usuario"/>
+        <mapping class="com.dogami.TablasDB.usuario"/>
         </session-factory>
 </hibernate-configuration>
