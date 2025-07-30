@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
-        <title>DOgami</title>
+        <title>DOgami/Inicio de sesión</title>
         <meta charset="UTF-8">
         <meta name="Software diagramas de Origami">
         <meta name="keywords" content="Origami, Diagramas, Diseño">

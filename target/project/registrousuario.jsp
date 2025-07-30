@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>DOgami - Registro</title> <meta charset="UTF-8">
+        <title>DOgami/Registro</title> <meta charset="UTF-8">
         <meta name="Software diagramas de Origami">
         <meta name="keywords" content="Origami, Diagramas, Diseño">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

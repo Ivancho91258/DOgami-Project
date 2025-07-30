@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>DOgami</title>
+        <title>DOgami/Licencia</title>
         <meta charset="UTF-8">
         <meta name="Software diagramas de Origami">
         <meta name="keywords" content="Origami, Diagramas, Diseño">
@@ -16,7 +16,7 @@
                 <div class="vacio-container"></div>
                 <div class="titulo-container">
                     <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
-                    <h1>DOgami</h1>        
+                    <h1>DOgami</h1>
                 </div>
                 <div class="vacio-container"></div>
             </div>
@@ -33,7 +33,7 @@
                     <h2>Suscripción mensual</h2>
                 </div>
                 <div class="elementos1-internos">
-                    <p>Con esta licencia obtendras acceso al software, acceso a la nube compartida y a las actualizaciones</p>               
+                    <p>Con esta licencia obtendras acceso al software, acceso a la nube compartida y a las actualizaciones</p>
                 </div>
                 <div class="elementos-internos">
                     <input type="submit" value="Obtener" id="boton-licencia" class="licenciaboton">
@@ -47,7 +47,7 @@
                     <h2>Sin suscripción</h2>
                 </div>
                 <div class="elementos1-internos">
-                    <p>Con esta licencia obtendras acceso al software de forma gratuita y unicamente tendrá almacenamiento local</p>               
+                    <p>Con esta licencia obtendras acceso al software de forma gratuita y unicamente tendrá almacenamiento local</p>
                 </div>
                 <div class="elementos-internos">
                     <input type="submit" value="Obtener" id="boton-licencia" class="licenciaboton">

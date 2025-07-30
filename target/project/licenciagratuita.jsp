@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>DOgami</title>
+        <title>DOgami/Licencia Gratuita</title>
         <meta charset="UTF-8">
         <meta name="Software diagramas de Origami">
         <meta name="keywords" content="Origami, Diagramas, Diseño">
@@ -16,7 +16,7 @@
                 <div class="vacio-container"></div>
                 <div class="titulo-container">
                     <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
-                    <h1>DOgami</h1>        
+                    <h1>DOgami</h1>
                 </div>
                 <div class="vacio-container"></div>
             </div>
