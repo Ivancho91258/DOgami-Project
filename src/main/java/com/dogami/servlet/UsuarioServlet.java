@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,18 +40,21 @@ public class UsuarioServlet extends HttpServlet {
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
         
-        String sql = "SELECT COUNT(*) FROM usuario WHERE correo = ? AND contraseña = ?";
+        String sql = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
         
         // Usamos try-with-resources para el manejo automático de recursos
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, correo);
-            pstmt.setString(2, contraseña); // ⚠️ ADVERTENCIA: Contraseña en texto plano
+            pstmt.setString(2, contraseña);
             
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next() && rs.getInt(1) == 1) {
+                if (rs.next()) {
                     // Login exitoso
+                    String nombre = rs.getString("nombre");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("loggedInUser", nombre);
                     request.getSession().setAttribute("loggedInUserCorreo", correo);
                     response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
                 } else {

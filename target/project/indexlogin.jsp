@@ -18,7 +18,17 @@
                 <h1>DOgami</h1>
             </div>
             <div class="botones-login-container">
-                <a href="index.jsp" class="botones-sesion-login">Sesión Iniciada</a> <%--Pendiente la configuración del cierre de sesión--%>
+                <a href="index.jsp" class="botones-sesion-login">S
+                    <%
+                    String nombreUsuario = (String) session.getAttribute("loggedInUser");
+                    if (nombreUsuario != null) {
+                        out.print(nombreUsuario);
+                    } else {
+                        out.print("Iniciar sesión");
+                    }
+                    %>
+                </a>>
+                <%--Pendiente la configuración del cierre de sesión--%>
             </div>
         </div>
     </header>
