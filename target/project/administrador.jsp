@@ -34,13 +34,13 @@
         </div>
         <h1>Lista de usuarios</h1>
         <table border="1">
-            <thead
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Tipo de licencia</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Tipo de licencia</th>
+                </tr>
             </thead>
             <tbody>
                 <c:forEach var="usuario" items="${usuarios}">
