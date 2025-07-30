@@ -29,26 +29,47 @@ public class UsuarioServlet extends HttpServlet {
         if ("/register".equals(path)) {
             handleRegister(request, response);
         } else {
-            handleLogin(request, response);
+                try {
+                    handleLogin(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
+                    request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+                }
         }
     }
 
-
     //Maneja la lógica de inicio de sesión.
 
-    private void handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
         
+        try (Connection conn = DBConnection.getConnection()) {
+            // Primero, verifica si el usuario es un administrador
+            // Si es administrador, redirige a la página de administrador
+            String sqlAdmin = "SELECT nombre FROM administrador WHERE correo = ? AND contraseña = ?";
+            try (PreparedStatement pstmtAdmin = conn.prepareStatement(sqlAdmin)) {
+                pstmtAdmin.setString(1, correo);
+                pstmtAdmin.setString(2, contraseña);
+                try (ResultSet rsAdmin = pstmtAdmin.executeQuery()) {
+                    if (rsAdmin.next()) {
+                        String nombre = rsAdmin.getString("nombre");
+                        HttpSession session = request.getSession();
+                        session.setAttribute("loggedInUser", nombre);
+                        request.getSession().setAttribute("loggedInUser", nombre);
+                        response.sendRedirect(request.getContextPath() + "/administrador.jsp");
+                        return;
+                    }
+                }
+            }
+
         String sql = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
-        
-        // Usamos try-with-resources para el manejo automático de recursos
-        try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, correo);
             pstmt.setString(2, contraseña);
-            
+
+            //Si el usuario no es administrador, verifica las credenciales del usuario normal
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     // Login exitoso - llama el nombre del usuario para mostrarlo en la sesión
@@ -56,16 +77,8 @@ public class UsuarioServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("loggedInUser", nombre);
                     request.getSession().setAttribute("loggedInUserCorreo", correo);
-                    //Inicio de sesión de administrador
-
-                    if ("ivancho91258@gmail.com".equals(correo)) {
-                        response.sendRedirect(request.getContextPath() + "/administrador.jsp");
-                        return;
-                    } else {
-                        response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
-                        return;
-                    }
-
+                    request.getRequestDispatcher("indexlogin.jsp").forward(request, response);
+                    return;
                 } else {
                     // Inicio de sesión fallido
                     request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
@@ -78,6 +91,7 @@ public class UsuarioServlet extends HttpServlet {
             request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
             request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
             return;
+            }
         }
     }
 
