@@ -51,22 +51,33 @@ public class UsuarioServlet extends HttpServlet {
             
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    // Login exitoso
+                    // Login exitoso - llama el nombre del usuario para mostrarlo en la sesión
                     String nombre = rs.getString("nombre");
                     HttpSession session = request.getSession();
                     session.setAttribute("loggedInUser", nombre);
                     request.getSession().setAttribute("loggedInUserCorreo", correo);
-                    response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
+                    //Inicio de sesión de administrador
+
+                    if ("ivancho91258@gmail.com".equals(correo)) {
+                        response.sendRedirect(request.getContextPath() + "/administrador.jsp");
+                        return;
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
+                        return;
+                    }
+
                 } else {
-                    // Login fallido
+                    // Inicio de sesión fallido
                     request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
                     request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+                    return;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
             request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+            return;
         }
     }
 

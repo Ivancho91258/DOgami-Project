@@ -11,30 +11,30 @@ html,body { /*color de fondo página, textos generales */
     padding: 0;
     margin: 0;
 }
- .header-container {
+.header-container {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    align-items: center; 
+    align-items: center;
 }
- .vacio-container {
+.vacio-container {
     width: 33%;
-}  
- .titulo-container {
+}
+.titulo-container {
     width: 33%;
     display: flex;
     color: black;
     justify-content: center;
     align-items: center;
-}  
- .titulo-container img { /* Icono del titulo */ 
+}
+ .titulo-container img { /* Icono del titulo */
     width: 50px;
     height: 68px;
     margin: 10px;
 }
- .vacio1-container {
+.vacio1-container {
     width: 33%;
-}  
+}
  .cuadro1-container { /* Cuadro zona de crear cuenta */
     background-color: #F2F2F2;
     padding: 15px;
@@ -42,16 +42,16 @@ html,body { /*color de fondo página, textos generales */
     max-width: 400px;
     height: auto;
     margin: 0 auto;
-    position: relative;    
+    position: relative;
 }
- .elementos-internos{
+.elementos-internos{
     max-width: 400px;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
- .elementos-internos1{
+.elementos-internos1{
     max-width: 400px;
     height: auto;
     display: flex;
@@ -59,48 +59,48 @@ html,body { /*color de fondo página, textos generales */
     justify-content: center;
     gap: 2%;
 }
- .elementos-internos1 input[type="text"]{
+.elementos-internos1 input[type="text"]{
     width: 48%;
     font-size: 16px;
     padding: 1%;
     box-sizing: border-box;
 }
- .email-container{
+.email-container{
     max-width: 400px;
     height: auto;
     display: flex;
     justify-content: center;
 }
- .email-container input[type="email"]{
+.email-container input[type="email"]{
     width: 98%;
     padding: 1%;
     font-size: 16px;
     box-sizing: border-box;
     margin-top: 15px;
 }
- .password-container{
+.password-container{
     max-width: 400px;
     height: auto;
     display: flex;
     justify-content: center;
 }
- .password-container input[type="password"]{
+.password-container input[type="password"]{
     width: 98%;
     padding: 1%;
     font-size: 16px;
     box-sizing: border-box;
     margin-top: 15px;
 }
- .google-container{
+.google-container{
     width: auto;
     height: 20px;
 }
- .titulo2-container { /*Ingresa tus datos*/
+.titulo2-container { /*Ingresa tus datos*/
     text-align: center;
     font-size: 30px;
     color: black;
 }
- .loginbotongoogle {
+.loginbotongoogle {
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -114,27 +114,33 @@ html,body { /*color de fondo página, textos generales */
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
 }
- .loginbotongoogle:hover {
+.loginbotongoogle:hover {
     background-color: #0468BF;
 }
- #boton-inicio-google {
+#boton-inicio-google {
     font-weight: bold;
 }
- .texto-interno1{/*google*/
+.texto-interno1{/*google*/
     font-size: 20px;
     text-align: center;
 }
- .texto-interno2{/*inicia sesión con otro correo*/
+.texto-interno2{/*inicia sesión con otro correo*/
     font-size: 12px;
     text-align: center;
     margin-bottom: 25px;
 }
- .texto-interno3{/*recomendación de contraseña*/
+.texto-interno3{/*recomendación de contraseña*/
     font-size: 9px;
     text-align: center;
     margin-bottom: 25px;
 }
- .cuentaboton {
+.error-container{/* Mensaje de error */
+    color: red;
+    font-size: 12px;
+    text-align: right;
+    margin-right: 5%;
+}
+.cuentaboton {
     background-color: #0F1359;
     color: #F2F2F2;;
     width: 90%;
@@ -146,10 +152,10 @@ html,body { /*color de fondo página, textos generales */
     transition: background-color 0.3s ease;
     margin: 3px;
 }
- .cuentaboton:hover {
+.cuentaboton:hover {
     background-color: #0468BF;
 }
- footer {
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -158,7 +164,7 @@ html,body { /*color de fondo página, textos generales */
     text-align: center;
     box-sizing: border-box;
 }
- .mensaje-final{
+.mensaje-final{
     text-align: center;
     color: #F2F2F2;
     font-size: 12px;
@@ -174,30 +180,30 @@ html,body { /*color de fondo página, textos generales */
         margin: 0;
         padding: 0;
     }
-     .header-container {
+    .header-container {
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
-     .vacio-container {
+    .vacio-container {
         width: 100%;
         padding: 1%;
-    }    
-     .titulo-container {
+    }
+    .titulo-container {
         width: 100%;
         display: flex;
         color: black;
         justify-content: center;
         align-items: center;
     }
-     .titulo-container img { /* Icono del titulo */ 
+     .titulo-container img { /* Icono del titulo */
         width: 37.5px;
         height: 51px;
         margin: 10px;
     }
-     .vacio1-container {
+    .vacio1-container {
         width: 100%;
-    }  
+    }
     .cuadro1-container { /* Cuadro zona de crear cuenta */
         background-color: #F2F2F2;
         padding: 15px;
@@ -207,7 +213,7 @@ html,body { /*color de fondo página, textos generales */
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 2%;
-        align-items: center;  
+        align-items: center;
     }
     .elementos-internos{
         max-width: 400px;
@@ -265,7 +271,7 @@ html,body { /*color de fondo página, textos generales */
         font-size: 30px;
         color: black;
     }
- .loginbotongoogle {
+.loginbotongoogle {
         display: inline-flex;
         align-items: center;
         gap: 5px;

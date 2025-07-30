@@ -11,30 +11,30 @@ html,body { /*color de fondo página, textos generales */
     padding: 0;
     margin: 0;
 }
- .header-container {
+.header-container {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    align-items: center; 
+    align-items: center;
 }
- .vacio-container {
+.vacio-container {
     width: 33%;
-}  
- .titulo-container {
+}
+.titulo-container {
     width: 33%;
     display: flex;
     color: black;
     justify-content: center;
     align-items: center;
-}  
- .titulo-container img { /* Icono del titulo */ 
+}
+ .titulo-container img { /* Icono del titulo */
     width: 50px;
     height: 68px;
     margin: 10px;
 }
- .vacio1-container {
+.vacio1-container {
     width: 33%;
-}  
+}
  .cuadro1-container { /* Cuadro zona de login */
     background-color: #F2F2F2;
     padding: 15px;
@@ -44,30 +44,21 @@ html,body { /*color de fondo página, textos generales */
     margin-left: 40%;
     margin-right: 40%;
     margin-top: 2%;
-    align-items: center;    
+    align-items: center;
 }
- .elementos-internos{
+.elementos-internos{
     max-width: 400px;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
- .titulo2-container { /*inciar sesión*/
+.titulo2-container { /*inciar sesión*/
     text-align: center;
     font-size: 30px;
     color: black;
 }
- input[type="email"] {    
-    width: 90%;
-    padding: 1%;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 25px;
-    color: black;            
-}
- input[type="password"]{    
+input[type="email"] {
     width: 90%;
     padding: 1%;
     border: 1px solid black;
@@ -76,17 +67,26 @@ html,body { /*color de fondo página, textos generales */
     margin-bottom: 25px;
     color: black;
 }
- .olvidaste-contraseña {
+input[type="password"]{
+    width: 90%;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: black;
+}
+.olvidaste-contraseña {
     display: block;
     margin: 10px;
     text-align: center;
     color: black;
     text-decoration: none;
 }
- .olvidaste-contraseña:hover {
+.olvidaste-contraseña:hover {
     text-decoration: underline;
 }
- .loginboton {
+.loginboton {
     background-color: #0F1359;
     color: #F2F2F2;
     width: 90%;
@@ -98,29 +98,29 @@ html,body { /*color de fondo página, textos generales */
     transition: background-color 0.3s ease;
     margin: 10px;
 }
- .loginboton:hover {
+.loginboton:hover {
     background-color: #0468BF;
 }
- #boton-inicio-sesión {
+#boton-inicio-sesión {
     font-weight: bold;
 }
- .error-container{
+.error-container{
     color: red;
-    font-size: 15px;
+    font-size: 12px;
     text-align: right;
     margin-right: 5%;
 }
- .contacto {/*mover a index*/
+.contacto {/*mover a index*/
     display: block;
     margin: 10px;
     text-align: center;
     color: black;
     text-decoration: none;
 }
- .contacto:hover {/*mover a index*/
+.contacto:hover {/*mover a index*/
     text-decoration: underline;
 }
- footer {
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -129,7 +129,7 @@ html,body { /*color de fondo página, textos generales */
     text-align: center;
     box-sizing: border-box;
 }
- .mensaje-final{
+.mensaje-final{
     text-align: center;
     color: #F2F2F2;
     font-size: 12px;
@@ -150,18 +150,18 @@ html,body { /*color de fondo página, textos generales */
         justify-content: center;
         flex-direction: column;
     }
-     .vacio-container {
+    .vacio-container {
         width: 100%;
         padding: 1%;
-    }    
-     .titulo-container {
+    }
+    .titulo-container {
         width: 100%;
         display: flex;
         color: black;
         justify-content: center;
         align-items: center;
     }
-     .titulo-container img { /* Icono del titulo */ 
+     .titulo-container img { /* Icono del titulo */
         width: 37.5px;
         height: 51px;
         margin: 10px;
@@ -170,16 +170,16 @@ html,body { /*color de fondo página, textos generales */
         display: flex;
         justify-content: space-between;
         font-size: 16px;
-        align-items: center; 
+        align-items: center;
     }
-     .titulo-container {
+    .titulo-container {
         width: 100%;
         display: flex;
         color: black;
         justify-content: center;
         align-items: center;
     }
-    .titulo-container img { /* Icono del titulo */ 
+    .titulo-container img { /* Icono del titulo */
         width: 37.5px;
         height: 51px;
         margin: 10px;
@@ -193,7 +193,7 @@ html,body { /*color de fondo página, textos generales */
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 2%;
-        align-items: center;    
+        align-items: center;
     }
     .elementos-internos{
         max-width: 400px;
@@ -207,16 +207,16 @@ html,body { /*color de fondo página, textos generales */
         font-size: 30px;
         color: black;
     }
-    input[type="email"] {    
+    input[type="email"] {
         width: 90%;
         padding: 1%;
         border: 1px solid black;
         border-radius: 5px;
         font-size: 16px;
         margin-bottom: 25px;
-        color: black;            
+        color: black;
     }
-    input[type="password"]{    
+    input[type="password"]{
         width: 90%;
         padding: 1%;
         border: 1px solid black;

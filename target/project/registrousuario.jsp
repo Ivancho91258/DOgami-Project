@@ -35,17 +35,16 @@
             <div class="texto-interno2">
                 <h2>Inicia sesión con otro correo</h2>
             </div>
-
-            <%
-    String error = (String) request.getAttribute("mensajeError");
-    if (error != null) {
-%>
-    <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 15px; text-align: center;">
-        <%= error %>
-    </div>
-<%
-    }
-%>
+            <div class="error-container">
+                <%
+                String error = (String) request.getAttribute("mensajeError");
+                if (error != null) {
+                %>
+                    <p id="mensaje-error"><%= error %></p>
+                <%
+                }
+                %>
+            </div>
             
                 <form action="register" method="post">
                     <div class="elementos-internos1">
