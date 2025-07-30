@@ -1,40 +1,47 @@
-html,body { /*color de fondo página, textos generales */
+html {
+    height: 100%;
     background: #020024;
-    background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-    background-size: cover; /* Asegura que el gradient cubra toda el área */
-    background-attachment: fixed;
+    background: linear-gradient(36deg, rgba(2,0,36,1) 11%, rgba(9,9,121,1) 50%, rgba(0,212,255,1) 80%);
+    background-attachment: fixed; /* Clave: Fija el fondo para que cubra todo y no se mueva */
+}
+/*Estilos para el cuerpo y el contenido */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
-    color: black;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    color: white;
+    line-height: 1.5;
 }
- .header-container {
+main {
+    flex-grow: 1;
+}
+.header-container {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    align-items: center; 
+    align-items: center;
 }
- .vacio-container {
+.vacio-container {
     width: 33%;
-}  
- .titulo-container {
+}
+.titulo-container {
     width: 33%;
     display: flex;
     color: black;
     justify-content: center;
     align-items: center;
-}  
- .titulo-container img { /* Icono del titulo */ 
+}
+ .titulo-container img { /* Icono del titulo */
     width: 50px;
     height: 68px;
     margin: 10px;
 }
- .vacio1-container {
+.vacio1-container {
     width: 33%;
-}  
+}
  .titulo1-container { /* Titulo superior */
     background-color: #0F1359;
     display: flex;
@@ -47,13 +54,13 @@ html,body { /*color de fondo página, textos generales */
     height: 40px;
     margin: 0 auto;
 }
- .cuadros-container{
+.cuadros-container{
     display: flex;
     width:100%;
     justify-content: space-between;
     margin-top: 4%;
 }
- .cuadro1-container, .cuadro2-container { /*Cuadros de licencias*/
+.cuadro1-container, .cuadro2-container { /*Cuadros de licencias*/
     background-color: #F2F2F2;
     padding: 10px;
     border-radius: 10px;
@@ -63,7 +70,7 @@ html,body { /*color de fondo página, textos generales */
     margin-left: 10%;
     margin-right: 10%;
 }
- .elementos-internos{
+.elementos-internos{
     max-width: 400px;
     height: auto;
     display: flex;
@@ -71,7 +78,7 @@ html,body { /*color de fondo página, textos generales */
     align-items: center;
     margin-top: 10px;
 }
- .elementos1-internos{
+.elementos1-internos{
     text-align: center;
     max-width: 350px;
     height: auto;
@@ -83,7 +90,7 @@ html,body { /*color de fondo página, textos generales */
     margin-right: 10px;
     font-weight: bold;
 }
- .licenciaboton {
+.licenciaboton {
     background-color: #0F1359;
     color: #F2F2F2;
     width: 90%;
@@ -95,13 +102,13 @@ html,body { /*color de fondo página, textos generales */
     margin-top: 25px;
     margin-bottom: 25px;
 }
- .licenciaboton:hover {
+.licenciaboton:hover {
     background-color: #0468BF;
 }
- #boton-licencia {
+#boton-licencia {
     font-weight: bold;
 }
- footer {
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -110,38 +117,30 @@ html,body { /*color de fondo página, textos generales */
     text-align: center;
     box-sizing: border-box;
 }
- .mensaje-final{
+.mensaje-final{
     text-align: center;
     color: #F2F2F2;
     font-size: 12px;
 }
 @media (max-width: 720px){ /*vista movil*/
-    html,body { /*color de fondo página, textos generales */
-        background: #020024;
-        background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        height: 100%;
-        width: 100%;
-        margin: 0;
-    }
-     .header-container {
+
+    .header-container {
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
-     .vacio-container {
+    .vacio-container {
         width: 100%;
         padding: 1%;
-    }    
-     .titulo-container {
+    }
+    .titulo-container {
         width: 100%;
         display: flex;
         color: black;
         justify-content: center;
         align-items: center;
     }
-     .titulo-container img { /* Icono del titulo */ 
+     .titulo-container img { /* Icono del titulo */
         width: 37.5px;
         height: 51px;
         margin: 10px;
@@ -212,15 +211,6 @@ html,body { /*color de fondo página, textos generales */
     #boton-licencia {
         font-weight: bold;
     }
-     footer {
-        position:static;
-        bottom: 0;
-        width: 100%;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        box-sizing: border-box;
-}
     .mensaje-final{
         text-align: center;
         color: #F2F2F2;

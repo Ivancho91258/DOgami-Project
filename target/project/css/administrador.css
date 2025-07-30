@@ -1,15 +1,22 @@
-html,body { /*color de fondo página, textos generales */
+html {
+    height: 100%;
     background: #020024;
-    background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-    background-size: cover; /* Asegura que el gradient cubra toda el área */
-    background-attachment: fixed;
+    background: linear-gradient(36deg, rgba(2,0,36,1) 11%, rgba(9,9,121,1) 50%, rgba(0,212,255,1) 80%);
+    background-attachment: fixed; /* Clave: Fija el fondo para que cubra todo y no se mueva */
+}
+/*Estilos para el cuerpo y el contenido */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
-    color: black;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    color: white;
     line-height: 1.5;
+}
+main {
+    flex-grow: 1;
 }
 .header-container {
     display: flex;
@@ -62,16 +69,6 @@ html,body { /*color de fondo página, textos generales */
 }
 
 @media (max-width: 720px){ /*vista movil*/
-    html,body { /*color de fondo página, textos generales */
-        background: #020024;
-        background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
     .header-container {
         display: flex;
         justify-content: center;
@@ -101,26 +98,10 @@ html,body { /*color de fondo página, textos generales */
     .botones-sesion-login {
         margin: 5px;
         padding: 8px 12px; /* Ajusta padding para móvil */
-        border-radius: 5px;
-        cursor: pointer;
         font-size: 14px; /* Ajusta tamaño de fuente para móvil */
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-        background-color: #0F1359;
-        color: #F2F2F2;
-        text-decoration: none;
     }
     .botones-sesion-login:hover {
         background-color: #0468BF;
-    }
-        footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        box-sizing: border-box;
     }
     .mensaje-final{
         text-align: center;

@@ -1,15 +1,22 @@
-html,body { /*color de fondo página, textos generales */
+html {
+    height: 100%;
     background: #020024;
-    background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-    background-size: cover; /* Asegura que el gradient cubra toda el área */
-    background-attachment: fixed;
+    background: linear-gradient(36deg, rgba(2,0,36,1) 11%, rgba(9,9,121,1) 50%, rgba(0,212,255,1) 80%);
+    background-attachment: fixed; /* Clave: Fija el fondo para que cubra todo y no se mueva */
+}
+/*Estilos para el cuerpo y el contenido */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
-    color: black;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    color: white;
+    line-height: 1.5;
+}
+main {
+    flex-grow: 1;
 }
 .header-container {
     display: flex;
@@ -170,16 +177,6 @@ footer {
     font-size: 12px;
 }
 @media (max-width: 720px){ /*vista movil*/
-    html,body { /*color de fondo página, textos generales */
-        background: #020024;
-        background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
     .header-container {
         display: flex;
         justify-content: center;
@@ -271,7 +268,7 @@ footer {
         font-size: 30px;
         color: black;
     }
-.loginbotongoogle {
+    .loginbotongoogle {
         display: inline-flex;
         align-items: center;
         gap: 5px;
@@ -319,15 +316,6 @@ footer {
     }
     .cuentaboton:hover {
         background-color: #0468BF;
-    }
-        footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        box-sizing: border-box;
     }
     .mensaje-final{
         text-align: center;

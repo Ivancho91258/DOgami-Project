@@ -11,36 +11,37 @@
         <link rel="stylesheet" href="css/licenciagratuita.css">
     </head>
     <body>
-        <header>
-            <div class="header-container">
-                <div class="vacio-container"></div>
-                <div class="titulo-container">
-                    <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
-                    <h1>DOgami</h1>
+        <main>
+            <header>
+                <div class="header-container">
+                    <div class="vacio-container"></div>
+                    <div class="titulo-container">
+                        <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
+                        <h1>DOgami</h1>
+                    </div>
+                    <div class="vacio-container"></div>
                 </div>
-                <div class="vacio-container"></div>
+            </header>
             </div>
-        </header>
-        </div>
-            <div class="cuadro-container">
-                <div class="elementos-internos">
-                    <h1>Licencia Gratuita</h1>
+                <div class="cuadro-container">
+                    <div class="elementos-internos">
+                        <h1>Licencia Gratuita</h1>
+                    </div>
+                    <div class="elementos1-internos">
+                        <h2>Sin suscripción</h2>
+                    </div>
+                    <div class="elementos1-internos">
+                        <p>Con esta licencia obtendras acceso al software de forma gratuita y unicamente tendrá almacenamiento local</p>               
+                    </div>
+                    <div class="elementos-internos">
+                        <input type="submit" value="Obtener" id="boton-licencia" class="licenciaboton">
+                    </div>
                 </div>
-                <div class="elementos1-internos">
-                    <h2>Sin suscripción</h2>
-                </div>
-                <div class="elementos1-internos">
-                    <p>Con esta licencia obtendras acceso al software de forma gratuita y unicamente tendrá almacenamiento local</p>               
-                </div>
-                <div class="elementos-internos">
-                    <input type="submit" value="Obtener" id="boton-licencia" class="licenciaboton">
-                </div>
+        </main>
+        <footer>
+            <div class="mensaje-final">
+                <h2>Tu software amigo en el mundo del Origami</h2>
             </div>
+        </footer>
     </body>
-    <footer>
-        <div class="mensaje-final">
-            <h2>Tu software amigo en el mundo del Origami</h2>
-        </div>
-    </footer>
-
 </html>

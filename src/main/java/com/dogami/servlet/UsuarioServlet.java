@@ -59,7 +59,7 @@ public class UsuarioServlet extends HttpServlet {
                         String nombre = rsAdmin.getString("nombre");
                         HttpSession session = request.getSession();
                         session.setAttribute("loggedInUser", nombre);
-                        response.sendRedirect(request.getContextPath() + "/administrador.jsp");
+                        request.getRequestDispatcher("/listausuarios").forward(request, response);
                         return;
                     }
                 }
@@ -156,6 +156,6 @@ public class UsuarioServlet extends HttpServlet {
         }
         
         request.setAttribute("usuarios", usuarios);
-        request.getRequestDispatcher("/listausuarios.jsp").forward(request, response);
+        request.getRequestDispatcher("/administrador.jsp").forward(request, response);
     }
 }

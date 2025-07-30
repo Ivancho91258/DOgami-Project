@@ -10,65 +10,64 @@
         <link rel="stylesheet" href="css/registrousuario.css">
     </head>
     <body>
-        <header>
-            <div class="header-container">
-                <div class="vacio-container"></div>
-                <div class="titulo-container">
-                    <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
-                    <h1>DOgami</h1>
+        <main>
+            <header>
+                <div class="header-container">
+                    <div class="vacio-container"></div>
+                    <div class="titulo-container">
+                        <img src="Image/Logo DOgami.png" alt="Icono DOgami"/>
+                        <h1>DOgami</h1>
+                    </div>
+                    <div class="vacio-container"></div>
                 </div>
-                <div class="vacio-container"></div>
+            </header>
+            <div class="cuadro1-container">
+                <div class="elementos-internos">
+                    <h1 class="titulo2-container">Ingresa tus datos</h1>
+                </div>
+                <div class="elementos-internos">
+                    <button class="loginbotongoogle">
+                        <img src="Image/google.png" alt="Icono google" class="google-container">
+                        <div class="texto-interno1">Ingresa con google</div>
+                    </button>
+                </div>
+                <div class="texto-interno2">
+                    <h2>Inicia sesión con otro correo</h2>
+                </div>
+                <div class="error-container">
+                    <%
+                    String error = (String) request.getAttribute("mensajeError");
+                    if (error != null) {
+                    %>
+                        <p id="mensaje-error"><%= error %></p>
+                    <%
+                    }
+                    %>
+                </div>
+                    <form action="register" method="post">
+                        <div class="elementos-internos1">
+                            <input type="text" placeholder="Nombres" name="nombres" required/>
+                            <input type="text" placeholder="Apellidos" name="apellidos" required/>
+                        </div>
+                        <div class="email-container">
+                            <input type="email" placeholder="Dirección de correo" name="correo" required/>
+                        </div>
+                        <div class="password-container">
+                            <input type="password" placeholder="Ingresa una contraseña..." name="contraseña" required/>
+                        </div>
+                        <div class="texto-interno3">
+                            <h2>Usa al menos una letra mayúscula, un número y un símbolo especial</h2>
+                        </div>
+                        <div class="elementos-internos">
+                            <input type="submit" value="Crea tu cuenta" id="boton-crear-cuenta" class="cuentaboton">
+                        </div>
+                    </form>
+                </div>
+        </main>
+        <footer>
+            <div class="mensaje-final">
+                <h2>Tu software amigo en el mundo del Origami</h2>
             </div>
-        </header>
-
-        <div class="cuadro1-container">
-            <div class="elementos-internos">
-                <h1 class="titulo2-container">Ingresa tus datos</h1>
-            </div>
-
-            <div class="elementos-internos">
-                <button class="loginbotongoogle">
-                    <img src="Image/google.png" alt="Icono google" class="google-container">
-                    <div class="texto-interno1">Ingresa con google</div>
-                </button>
-            </div>
-            <div class="texto-interno2">
-                <h2>Inicia sesión con otro correo</h2>
-            </div>
-            <div class="error-container">
-                <%
-                String error = (String) request.getAttribute("mensajeError");
-                if (error != null) {
-                %>
-                    <p id="mensaje-error"><%= error %></p>
-                <%
-                }
-                %>
-            </div>
-            
-                <form action="register" method="post">
-                    <div class="elementos-internos1">
-                        <input type="text" placeholder="Nombres" name="nombres" required/>
-                        <input type="text" placeholder="Apellidos" name="apellidos" required/>
-                    </div>
-                    <div class="email-container">
-                        <input type="email" placeholder="Dirección de correo" name="correo" required/>
-                    </div>
-                    <div class="password-container">
-                        <input type="password" placeholder="Ingresa una contraseña..." name="contraseña" required/>
-                    </div>
-                    <div class="texto-interno3">
-                        <h2>Usa al menos una letra mayúscula, un número y un símbolo especial</h2>
-                    </div>
-                    <div class="elementos-internos">
-                        <input type="submit" value="Crea tu cuenta" id="boton-crear-cuenta" class="cuentaboton">
-                    </div>
-                </form>
-            </div>
-        </body>
-    <footer>
-        <div class="mensaje-final">
-            <h2>Tu software amigo en el mundo del Origami</h2>
-        </div>
-    </footer>
+        </footer>
+    </body>
 </html>

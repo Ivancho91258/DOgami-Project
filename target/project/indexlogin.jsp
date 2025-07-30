@@ -10,29 +10,31 @@
         <link rel="icon" href="Image/Logo DOgami.png">
         <link rel="stylesheet" href="css/index.css">
     </head>
-    <header>
-        <div class="header-container">
-            <div class="vacio-container"></div>
-            <div class="titulo-container">
-                <img src="Image/Logo DOgami.png" alt="Icono Dogami">
-                <h1>DOgami</h1>
-            </div>
-            <div class="botones-login-container">
-                <a href="index.jsp" class="botones-sesion-login">
-                    <%
-                    String nombreUsuario = (String) session.getAttribute("loggedInUser");
-                    if (nombreUsuario != null) {
-                        out.print(nombreUsuario);
-                    } else {
-                        out.print("Iniciar sesión");
-                    }
-                    %>
-                </a>
-                <%--Pendiente la configuración del cierre de sesión--%>
-            </div>
-        </div>
-    </header>
     <body>
+        <main>
+            <header>
+                <div class="header-container">
+                    <div class="vacio-container"></div>
+                    <div class="titulo-container">
+                        <img src="Image/Logo DOgami.png" alt="Icono Dogami">
+                        <h1>DOgami</h1>
+                    </div>
+                    <div class="botones-login-container">
+                        <a href="index.jsp" class="botones-sesion-login">
+                            <%
+                            String nombreUsuario = (String) session.getAttribute("loggedInUser");
+                            if (nombreUsuario != null) {
+                                out.print(nombreUsuario);
+                            } else {
+                                out.print("Iniciar sesión");
+                            }
+                            %>
+                        </a>
+                        <%--Pendiente la configuración del cierre de sesión--%>
+                    </div>
+                </div>
+            </header>
+        </main>
         <div class="prototipo-container">
             <img src="Image/Prototipo.png" alt="Imagen Software" class="">
             <div class="texto-descripción-container">
@@ -47,5 +49,4 @@
             </div>
         </footer>
     </body>
-
 </html>
