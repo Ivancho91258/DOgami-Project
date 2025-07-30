@@ -18,45 +18,44 @@
         <jakarta.servlet.api.version>6.0.0</jakarta.servlet.api.version>
         <hibernate.version>6.5.2.Final</hibernate.version> <jakarta.persistence.api.version>3.1.0</jakarta.persistence.api.version> </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
+        <dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+        <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.3</version>
-        </dependency>
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.7.3</version>
+    </dependency>
 
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>${jakarta.servlet.api.version}</version>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+        <groupId>jakarta.platform</groupId>
+        <artifactId>jakarta.jakartaee-web-api</artifactId>
+        <version>10.0.0</version>
+        <scope>provided</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>10.0.0</version> <scope>provided</scope> </dependency>
+    <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-
-        
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.13.0</version>
-        </dependency>
-        </dependencies>
+    <dependency>
+        <groupId>jakarta.servlet.jsp.jstl</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.glassfish.web</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        <version>3.0.1</version>
+    </dependency>
+    </dependencies>
 
     <build>
         <finalName>project</finalName>

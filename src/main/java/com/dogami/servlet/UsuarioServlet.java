@@ -124,7 +124,8 @@ public class UsuarioServlet extends HttpServlet {
             request.getRequestDispatcher("registrousuario.jsp").forward(request, response);
         }
     }
-    private void handleListaUsuarios(HttpServletRequest request, HttpServletResponse response) 
+    // Metodo para manejar la lista de usuarios
+    private void handleListaUsuarios(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         List<Usuario> usuarios = new ArrayList<>();
@@ -138,10 +139,10 @@ public class UsuarioServlet extends HttpServlet {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 String correo = rs.getString("correo");
-                String tipoDeLicencia = rs.getString("tipo_de_licencia");
+                String tipo_de_licencia = rs.getString("tipo_de_licencia");
                 
-                Usuario usuarioObj = new Usuario(id, nombre, correo, tipoDeLicencia);
-                usuarios.add(usuarioObj);
+                Usuario usuario = new Usuario(id, nombre, correo, tipo_de_licencia);
+                usuarios.add(usuario);
             }
         } catch (SQLException e) {
             e.printStackTrace();
