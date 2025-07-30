@@ -1,5 +1,6 @@
 package com.dogami.servlet;
 
+import com.dogami.TablasDB.Usuario;
 import com.dogami.dbconnection.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,41 +14,38 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-// Anotación para manejar ambas URLs
-@WebServlet({"/login", "/register"})
+@WebServlet({"/login", "/register", "/listausuarios"})
 public class UsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // Obtenemos la URL para saber qué acción tomar
         String path = request.getServletPath();
 
-        // Decidimos qué método llamar
         if ("/register".equals(path)) {
             handleRegister(request, response);
+        } else if ("/login".equals(path)) {
+            handleLogin(request, response);
+        } else if ("/listausuarios".equals(path)) {
+            handleListaUsuarios(request, response);
         } else {
-                try {
-                    handleLogin(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
-                    request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
-                }
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Error: URL no encontrada.");
         }
     }
 
-    //Maneja la lógica de inicio de sesión.
-
-    private void handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+    //Metodo para manejar el inicio de sesión
+    private void handleLogin(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
         
         try (Connection conn = DBConnection.getConnection()) {
-            // Primero, verifica si el usuario es un administrador
-            // Si es administrador, redirige a la página de administrador
+
+            // Inicio de sesión como administrador
             String sqlAdmin = "SELECT nombre FROM administrador WHERE correo = ? AND contraseña = ?";
             try (PreparedStatement pstmtAdmin = conn.prepareStatement(sqlAdmin)) {
                 pstmtAdmin.setString(1, correo);
@@ -57,53 +55,46 @@ public class UsuarioServlet extends HttpServlet {
                         String nombre = rsAdmin.getString("nombre");
                         HttpSession session = request.getSession();
                         session.setAttribute("loggedInUser", nombre);
-                        request.getSession().setAttribute("loggedInUser", nombre);
                         response.sendRedirect(request.getContextPath() + "/administrador.jsp");
                         return;
                     }
                 }
             }
 
-        String sql = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, correo);
-            pstmt.setString(2, contraseña);
-
-            //Si el usuario no es administrador, verifica las credenciales del usuario normal
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    // Login exitoso - llama el nombre del usuario para mostrarlo en la sesión
-                    String nombre = rs.getString("nombre");
-                    HttpSession session = request.getSession();
-                    session.setAttribute("loggedInUser", nombre);
-                    request.getSession().setAttribute("loggedInUserCorreo", correo);
-                    request.getRequestDispatcher("indexlogin.jsp").forward(request, response);
-                    return;
-                } else {
-                    // Inicio de sesión fallido
-                    request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
-                    request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
-                    return;
+            // Inicio de sesión como usuario normal
+            String sqlUser = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
+            try (PreparedStatement pstmtUser = conn.prepareStatement(sqlUser)) {
+                pstmtUser.setString(1, correo);
+                pstmtUser.setString(2, contraseña);
+                try (ResultSet rsUser = pstmtUser.executeQuery()) {
+                    if (rsUser.next()) {
+                        String nombre = rsUser.getString("nombre");
+                        HttpSession session = request.getSession();
+                        session.setAttribute("loggedInUser", nombre);
+                        session.setAttribute("loggedInUserCorreo", correo);
+                        response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
+                        return;
+                    }
                 }
             }
+
+            request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
+            request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("mensajeError", "Error de base de datos. Intente más tarde.");
             request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
-            return;
-            }
         }
     }
 
-    /**
-     * Maneja la lógica de registro de nuevos usuarios.
-     */
-    private void handleRegister(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    // Metodo para manejar el registro de usuarios
+    private void handleRegister(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
         String nombres = request.getParameter("nombres");
         String apellidos = request.getParameter("apellidos");
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
-        
         String nombreCompleto = nombres + " " + apellidos;
         
         String sql = "INSERT INTO usuario (nombre, correo, contraseña, tipo_de_licencia) VALUES (?, ?, ?, ?)";
@@ -116,20 +107,14 @@ public class UsuarioServlet extends HttpServlet {
             pstmt.setString(3, contraseña);
             pstmt.setString(4, "Gratuita");
             
-            int rowsAffected = pstmt.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                // Registro exitoso, redirige al login
-                System.out.println("Usuario creado exitosamente: " + nombreCompleto);
+            if (pstmt.executeUpdate() > 0) {
                 request.setAttribute("mensajeExito", "¡Cuenta creada! Por favor, inicia sesión.");
                 request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
             } else {
-                System.err.println("Error al crear el usuario: filas afectadas = " + rowsAffected);
                 request.setAttribute("mensajeError", "No se pudo crear la cuenta. Inténtalo de nuevo.");
                 request.getRequestDispatcher("registrousuario.jsp").forward(request, response);
             }
         } catch (SQLException e) {
-            // Maneja error de correo duplicado (código para PostgreSQL: 23505)
             if ("23505".equals(e.getSQLState())) {
                 request.setAttribute("mensajeError", "El correo electrónico ya está registrado.");
             } else {
@@ -138,5 +123,34 @@ public class UsuarioServlet extends HttpServlet {
             }
             request.getRequestDispatcher("registrousuario.jsp").forward(request, response);
         }
+    }
+    private void handleListaUsuarios(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT id, nombre, correo, tipo_de_licencia FROM usuario";
+
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String correo = rs.getString("correo");
+                String tipoDeLicencia = rs.getString("tipo_de_licencia");
+                
+                Usuario usuarioObj = new Usuario(id, nombre, correo, tipoDeLicencia);
+                usuarios.add(usuarioObj);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("mensajeError", "Error al recuperar la lista de usuarios.");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+            return;
+        }
+        
+        request.setAttribute("usuarios", usuarios);
+        request.getRequestDispatcher("/listausuarios.jsp").forward(request, response);
     }
 }

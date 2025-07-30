@@ -7,10 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
-public class usuario {
-    public usuario() {
-    }
-
+public class Usuario {
         @Id
         @Column(name = "id")
         private int id;
@@ -23,11 +20,20 @@ public class usuario {
         @Column(name = "tipo_de_licencia")
         private String tipo_de_licencia;
         
-        public usuario(int id, String nombre, String correo, String contraseña, String tipo_de_licencia) {
+    public Usuario() {
+    }
+            public Usuario(int id, String nombre, String correo, String contraseña, String tipo_de_licencia) {
             this.id = id;
             this.nombre = nombre;
             this.correo = correo;
             this.contraseña = contraseña;
+            this.tipo_de_licencia = tipo_de_licencia;
+        }
+        // Constructor sin contraseña, para listar los usuarios
+            public Usuario(int id, String nombre, String correo, String tipo_de_licencia) {
+            this.id = id;
+            this.nombre = nombre;
+            this.correo = correo;
             this.tipo_de_licencia = tipo_de_licencia;
         }
 
