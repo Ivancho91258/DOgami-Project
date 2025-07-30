@@ -133,6 +133,7 @@ main {
 }
 .texto-interno2{/*inicia sesión con otro correo*/
     font-size: 12px;
+    color: black;
     text-align: center;
     margin-bottom: 25px;
 }
@@ -140,6 +141,7 @@ main {
     font-size: 9px;
     text-align: center;
     margin-bottom: 25px;
+    color: black;
 }
 .error-container{/* Mensaje de error */
     color: red;

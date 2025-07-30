@@ -18,29 +18,29 @@ body {
 main {
     flex-grow: 1;
 }
- .header-container {
+.header-container {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    align-items: center; 
+    align-items: center;
 }
- .vacio-container {
+.vacio-container {
     width: 33%;
-}  
- .titulo-container {
+}
+.titulo-container {
     width: 33%;
     display: flex;
     color: black;
     justify-content: center;
     align-items: center;
-}  
- .titulo-container img { /* Icono del titulo */ 
+}
+ .titulo-container img { /* Icono del titulo */
     width: 50px;
     height: 68px;
     margin: 10px;
 }
 
- .cuadro-container { /*Cuadro de licencia*/
+.cuadro-container { /*Cuadro de licencia*/
     background-color: #F2F2F2;
     margin-top: 4%;
     border-radius: 10px;
@@ -50,7 +50,7 @@ main {
     margin-left: 40%;
     margin-right: 40%;
 }
- .elementos-internos{
+.elementos-internos{
     max-width: 400px;
     height: auto;
     display: flex;
@@ -58,7 +58,7 @@ main {
     align-items: center;
     margin-top: 10px;
 }
- .elementos1-internos{
+.elementos1-internos{
     text-align: center;
     max-width: 350px;
     height: auto;
@@ -71,7 +71,7 @@ main {
     font-weight: bold;
 
 }
- .licenciaboton {
+.licenciaboton {
     background-color: #0F1359;
     color: #F2F2F2;
     width: 90%;
@@ -84,13 +84,13 @@ main {
     margin-top: 25px;
     margin-bottom: 25px;
 }
- .licenciaboton:hover {
+.licenciaboton:hover {
     background-color: #0468BF;
 }
- #boton-licencia {
+#boton-licencia {
     font-weight: bold;
 }
- footer {
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -99,46 +99,37 @@ main {
     text-align: center;
     box-sizing: border-box;
 }
- .mensaje-final{
+.mensaje-final{
     text-align: center;
     color: #F2F2F2;
     font-size: 12px;
 }
 @media (max-width: 720px){ /*vista movil*/
-    html,body { /*color de fondo página, textos generales */
-        background: #020024;
-        background: linear-gradient(36deg, rgba(2, 0, 36, 1) 11%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 80%);
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-     .header-container {
+
+    .header-container {
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
-     .vacio-container {
+    .vacio-container {
         width: 100%;
         padding: 1%;
-    }    
-     .titulo-container {
+    }
+    .titulo-container {
         width: 100%;
         display: flex;
         color: black;
         justify-content: center;
         align-items: center;
     }
-     .titulo-container img { /* Icono del titulo */ 
+     .titulo-container img { /* Icono del titulo */
         width: 37.5px;
         height: 51px;
         margin: 10px;
     }
     .vacio1-container {
         width: 100%;
-    }  
+    }
     .cuadro-container { /*Cuadro de licencia*/
         background-color: #F2F2F2;
         padding: 15px;
@@ -148,7 +139,7 @@ main {
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 2%;
-        align-items: center; 
+        align-items: center;
     }
     .elementos-internos{
         max-width: 400px;
@@ -188,15 +179,6 @@ main {
     }
     #boton-licencia {
         font-weight: bold;
-    }
-        footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        box-sizing: border-box;
     }
     .mensaje-final{
         text-align: center;
