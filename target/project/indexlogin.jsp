@@ -34,7 +34,6 @@
                     </div>
                 </div>
             </header>
-        </main>
         <div class="prototipo-container">
             <img src="Image/Prototipo.png" alt="Imagen Software" class="">
             <div class="texto-descripción-container">
@@ -43,6 +42,7 @@
                 <a href="licenciagratuita.jsp" class="descargaboton">Descarga DOgami</a>
             </div>
         </div>
+        </main>
         <footer>
             <div class="mensaje-final">
                 <h2>Tu software amigo en el mundo del Origami</h2>
