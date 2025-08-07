@@ -56,7 +56,7 @@ main {
     font-weight: bold;
     transition: background-color 0.3s ease;
     background-color: #0F1359;
-    color: black;
+    color: white;
     text-decoration: none;
 }
 .botones-sesion-login:hover {
@@ -94,7 +94,7 @@ main {
     font-weight: bold;
     transition: background-color 0.3s ease;
     background-color: #0F1359;
-    color: #000000;
+    color: white;
     text-decoration: none;
     margin-top: 10%;
 }
