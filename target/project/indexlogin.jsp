@@ -39,7 +39,7 @@
             <div class="texto-descripción-container">
                 <p>DOgami es un software diseñado para realizar diagramas de origami, con el podrás avanzar en tu camino como Origamista.</p>
                 <p>Puedes obtener la versión gratuita dando clic en descargar, o registrarte, obtener la licencia y acceder a distintos beneficios, ¡Bienvenidos!</p>
-                <a href="licenciagratuita.jsp" class="descargaboton">Descarga DOgami</a>
+                <a href="licencia.jsp" class="descargaboton">Descarga DOgami</a>
             </div>
         </div>
         </main>
