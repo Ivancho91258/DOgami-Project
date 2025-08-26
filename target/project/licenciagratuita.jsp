@@ -31,7 +31,7 @@
                         <h2>Sin suscripción</h2>
                     </div>
                     <div class="elementos1-internos">
-                        <p>Con esta licencia obtendras acceso al software de forma gratuita y unicamente tendrá almacenamiento local</p>               
+                        <p>Con esta licencia obtendras acceso al software de forma gratuita y unicamente tendrá almacenamiento local</p>
                     </div>
                     <div class="elementos-internos">
                         <input type="submit" value="Obtener" id="boton-licencia" class="licenciaboton">
