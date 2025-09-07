@@ -30,11 +30,10 @@
                                 out.print("Iniciar sesión");
                             }
                             %>
-                        </a>
-                        <%--Pendiente la configuración del cierre de sesión--%>
+                        </a><%--Pendiente la configuración del cierre de sesión--%>
                     </div>
                 </div>
-                <h1>Lista de usuarios</h1>
+                <h1>Lista de usuarios</h1><%--Lista de usuarios registrados--%>
                 <table border="1">
                     <thead>
                         <tr>

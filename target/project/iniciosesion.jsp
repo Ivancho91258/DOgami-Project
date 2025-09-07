@@ -21,7 +21,7 @@
                     </div>
                     <div class="vacio-container"></div>
                 </div>
-            </header>
+            </header><%--Sección de inicio de sesión--%>
             <div class="cuadro1-container">
                 <div class="elementos-internos">
                     <h1 class="titulo2-container">Inicia sesión</h1>
@@ -39,7 +39,7 @@
                     <div class="elementos-internos">
                         <button type="submit" id="boton-inicio-sesión" class="loginboton">Iniciar sesión
                     </div>
-                </form>
+                </form><%--Pendiente la configuración de cambio de contraseña--%>
                 <div class="elementos-internos">
                     <a href="#" class="olvidaste-contraseña">¿Olvidaste tu Contraseña?</a>
                 </div>

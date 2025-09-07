@@ -29,8 +29,7 @@
                                 out.print("Iniciar sesión");
                             }
                             %>
-                        </a>
-                        <%--Pendiente la configuración del cierre de sesión--%>
+                        </a><%--Pendiente la configuración del cierre de sesión--%>
                     </div>
                 </div>
             </header>
