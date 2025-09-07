@@ -67,6 +67,48 @@ main {
     color: #F2F2F2;
     font-size: 12px;
 }
+.tabla-estilo {
+    max-width: max-content;
+    margin: 20px auto;
+    padding: 20px;
+    max-height: max-content;
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+.tabla-estilo h1 {
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.tabla-estilo table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tabla-estilo th, .tabla-estilo td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    color:black;
+}
+.tabla-estilo thead th {
+    background-color: #0468BF;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.tabla-estilo tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+.tabla-estilo tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+.tabla-estilo tbody tr:hover {
+    background-color: #e0f2f7;
+    cursor: pointer;
+}
 
 @media (max-width: 720px){ /*vista movil*/
     .header-container {
@@ -97,8 +139,8 @@ main {
     }
     .botones-sesion-login {
         margin: 5px;
-        padding: 8px 12px; /* Ajusta padding para móvil */
-        font-size: 14px; /* Ajusta tamaño de fuente para móvil */
+        padding: 8px 12px;
+        font-size: 14px;
     }
     .botones-sesion-login:hover {
         background-color: #0468BF;

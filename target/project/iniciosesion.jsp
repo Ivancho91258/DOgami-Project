@@ -33,9 +33,16 @@
                     <div class="elementos-internos">
                         <input type="password" id="contraseña" placeholder="Contraseña" name="contraseña"/>
                     </div>
-                    <div class="error-container">
-                        <p id="mensaje-error"></p>
-                    </div>
+                <div class="error-container">
+                    <%
+                    String error = (String) request.getAttribute("mensajeError");
+                    if (error != null) {
+                    %>
+                        <p id="mensaje-error"><%= error %></p>
+                    <%
+                    }
+                    %>
+                </div>
                     <div class="elementos-internos">
                         <button type="submit" id="boton-inicio-sesión" class="loginboton">Iniciar sesión
                     </div>

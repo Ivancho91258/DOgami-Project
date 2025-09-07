@@ -12,49 +12,51 @@
         <link rel="stylesheet" href="css/administrador.css">
     </head>
     <body>
-        <main>
-            <header>
-                <div class="header-container">
-                    <div class="vacio-container"></div>
-                    <div class="titulo-container">
-                        <img src="Image/Logo DOgami.png" alt="Icono Dogami">
-                        <h1>DOgami</h1>
-                    </div>
-                    <div class="botones-login-container">
-                        <a href="index.jsp" class="botones-sesion-login">
-                            <%
-                            String nombreUsuario = (String) session.getAttribute("loggedInUser");
-                            if (nombreUsuario != null) {
-                                out.print(nombreUsuario);
-                            } else {
-                                out.print("Iniciar sesión");
-                            }
-                            %>
-                        </a><%--Pendiente la configuración del cierre de sesión--%>
-                    </div>
+        <header>
+            <div class="header-container">
+                <div class="vacio-container"></div>
+                <div class="titulo-container">
+                    <img src="Image/Logo DOgami.png" alt="Icono Dogami">
+                    <h1>DOgami</h1>
                 </div>
-                <h1>Lista de usuarios</h1><%--Lista de usuarios registrados--%>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Tipo de licencia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="usuario" items="${usuarios}">
+                <div class="botones-login-container">
+                    <a href="index.jsp" class="botones-sesion-login">
+                        <%
+                        String nombreUsuario = (String) session.getAttribute("loggedInUser");
+                        if (nombreUsuario != null) {
+                            out.print(nombreUsuario);
+                        } else {
+                            out.print("Iniciar sesión");
+                        }
+                        %>
+                    </a><%--Pendiente la configuración del cierre de sesión--%>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="tabla-estilo">
+                <h1>Lista de usuarios</h1> <%--Lista de usuarios registrados--%>
+                    <table>
+                        <thead>
                             <tr>
-                                <td>${usuario.id}</td>
-                                <td>${usuario.nombre}</td>
-                                <td>${usuario.correo}</td>
-                                <td>${usuario.tipo_de_licencia}</td>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Tipo de licencia</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </header>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="usuario" items="${usuarios}">
+                                <tr>
+                                    <td>${usuario.id}</td>
+                                    <td>${usuario.nombre}</td>
+                                    <td>${usuario.correo}</td>
+                                    <td>${usuario.tipo_de_licencia}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+            </div>
         </main>
     <footer>
         <div class="mensaje-final">

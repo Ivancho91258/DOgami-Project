@@ -65,6 +65,9 @@ public class UsuarioServlet extends HttpServlet {
                 }
             }
 
+            request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
+            request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
+
             // Inicio de sesión como usuario normal
             String sqlUser = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
             try (PreparedStatement pstmtUser = conn.prepareStatement(sqlUser)) {
@@ -151,7 +154,7 @@ public class UsuarioServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("mensajeError", "Error al recuperar la lista de usuarios.");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("error.jsp").forward(request, response); //Pendiente la creacion de la pagina error.jsp
             return;
         }
         
