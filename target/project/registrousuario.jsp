@@ -43,7 +43,8 @@
                     <%
                     }
                     %>
-                </div><%--Sección de registro de usuario--%>
+                </div>
+                <%--Sección de registro de usuario--%>
                     <form action="register" method="post">
                         <div class="elementos-internos1">
                             <input type="text" placeholder="Nombres" name="nombres" required/>

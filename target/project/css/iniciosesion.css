@@ -113,7 +113,7 @@ input[type="password"]{
 }
 .error-container{
     color: red;
-    font-size: 12px;
+    font-size: 14px;
     text-align: right;
     margin-right: 5%;
 }
