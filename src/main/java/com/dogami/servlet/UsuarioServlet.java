@@ -46,7 +46,8 @@ public class UsuarioServlet extends HttpServlet {
             throws IOException, ServletException {
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
-        
+        boolean loginExitoso = false;
+
         try (Connection conn = DBConnection.getConnection()) {
 
             // Inicio de sesión como administrador
@@ -60,27 +61,30 @@ public class UsuarioServlet extends HttpServlet {
                         HttpSession session = request.getSession();
                         session.setAttribute("loggedInUser", nombre);
                         request.getRequestDispatcher("/listausuarios").forward(request, response);
+                        loginExitoso = true;
                         return;
                     }
                 }
             }
 
-            request.setAttribute("mensajeError", "Correo electrónico o contraseña incorrectos.");
-            request.getRequestDispatcher("iniciosesion.jsp").forward(request, response);
-
             // Inicio de sesión como usuario normal
-            String sqlUser = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
-            try (PreparedStatement pstmtUser = conn.prepareStatement(sqlUser)) {
-                pstmtUser.setString(1, correo);
-                pstmtUser.setString(2, contraseña);
-                try (ResultSet rsUser = pstmtUser.executeQuery()) {
-                    if (rsUser.next()) {
-                        String nombre = rsUser.getString("nombre");
-                        HttpSession session = request.getSession();
-                        session.setAttribute("loggedInUser", nombre);
-                        session.setAttribute("loggedInUserCorreo", correo);
-                        response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
-                        return;
+
+            if (!loginExitoso) {
+                String sqlUser = "SELECT nombre FROM usuario WHERE correo = ? AND contraseña = ?";
+                try (PreparedStatement pstmtUser = conn.prepareStatement(sqlUser)) {
+                    pstmtUser.setString(1, correo);
+                    pstmtUser.setString(2, contraseña);
+                    try (ResultSet rsUser = pstmtUser.executeQuery()) {
+                        if (rsUser.next()) {
+                            // Login de Usuario normal exitoso
+                            String nombre = rsUser.getString("nombre");
+                            HttpSession session = request.getSession();
+                            session.setAttribute("loggedInUser", nombre);
+                            session.setAttribute("loggedInUserCorreo", correo);
+                            response.sendRedirect(request.getContextPath() + "/indexlogin.jsp");
+                            loginExitoso = true;
+                            return;
+                        }
                     }
                 }
             }
