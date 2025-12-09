@@ -2,10 +2,8 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>DOgami/Usuario</title>
+        <title>DOgami - Usuario</title>
         <meta charset="UTF-8">
-        <meta name="Software diagramas de Origami">
-        <meta name="keywords" content="Origami, Diagramas, Diseño">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="Image/Logo DOgami.png">
         <link rel="stylesheet" href="css/index.css">
@@ -20,27 +18,40 @@
                         <h1>DOgami</h1>
                     </div>
                     <div class="botones-login-container">
-                        <a href="index.jsp" class="botones-sesion-login">
-                            <%
+                        <%
+                            // Lógica para mostrar nombre y botón Cerrar Sesión
                             String nombreUsuario = (String) session.getAttribute("loggedInUser");
                             if (nombreUsuario != null) {
-                                out.print(nombreUsuario);
+                        %>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <span style="font-size: 12px; margin-bottom: 2px;">Hola, <%= nombreUsuario %></span>
+                                <a href="${pageContext.request.contextPath}/cerrarsesion" class="botones-sesion-login" style="background-color: #d9534f;">
+                                    Cerrar Sesión
+                                </a>
+                            </div>
+                        <%
                             } else {
-                                out.print("Iniciar sesión");
+                        %>
+                            <a href="iniciosesion.jsp" class="botones-sesion-login">
+                                Iniciar sesión
+                            </a>
+                        <%
                             }
-                            %>
-                        </a><%--Pendiente la configuración del cierre de sesión--%>
+                        %>
                     </div>
                 </div>
             </header>
-        <div class="prototipo-container">
-            <img src="Image/Prototipo.png" alt="Imagen Software" class="">
-            <div class="texto-descripción-container">
-                <p>DOgami es un software diseñado para realizar diagramas de origami, con el podrás avanzar en tu camino como Origamista.</p>
-                <p>Puedes obtener la versión gratuita dando clic en descargar, o registrarte, obtener la licencia y acceder a distintos beneficios, ¡Bienvenidos!</p>
-                <a href="licencia.jsp" class="descargaboton">Descarga DOgami</a>
+            
+            <div class="prototipo-container">
+                <img src="Image/Prototipo.png" alt="Imagen Software">
+                <div class="texto-descripción-container">
+                    <p>DOgami es un software diseñado para realizar diagramas de origami, con él podrás avanzar en tu camino como Origamista.</p>
+                    
+                    <%-- Mostrar contenido diferente según la licencia si quieres --%>
+                    
+                    <a href="licencia.jsp" class="descargaboton">Descarga DOgami</a>
+                </div>
             </div>
-        </div>
         </main>
         <footer>
             <div class="mensaje-final">

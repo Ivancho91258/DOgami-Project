@@ -3,10 +3,8 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>DOgami/Administrador</title>
+        <title>DOgami - Administrador</title>
         <meta charset="UTF-8">
-        <meta name="Software diagramas de Origami">
-        <meta name="keywords" content="Origami, Diagramas, Diseño">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="Image/Logo DOgami.png">
         <link rel="stylesheet" href="css/administrador.css">
@@ -17,51 +15,86 @@
                 <div class="vacio-container"></div>
                 <div class="titulo-container">
                     <img src="Image/Logo DOgami.png" alt="Icono Dogami">
-                    <h1>DOgami</h1>
+                    <h1>DOgami Admin</h1>
                 </div>
                 <div class="botones-login-container">
-                    <a href="index.jsp" class="botones-sesion-login">
-                        <%
+                    <%
                         String nombreUsuario = (String) session.getAttribute("loggedInUser");
                         if (nombreUsuario != null) {
-                            out.print(nombreUsuario);
+                    %>
+                        <span style="color: white; margin-right: 10px; font-weight: bold;">Hola, <%= nombreUsuario %></span>
+                        <a href="${pageContext.request.contextPath}/cerrarsesion" class="botones-sesion-login btn-logout">
+                            Cerrar Sesión
+                        </a>
+                    <%
                         } else {
-                            out.print("Iniciar sesión");
+                    %>
+                        <a href="index.jsp" class="botones-sesion-login">Iniciar sesión</a>
+                    <%
                         }
-                        %>
-                    </a><%--Pendiente la configuración del cierre de sesión--%>
+                    %>
                 </div>
             </div>
         </header>
+
         <main>
             <div class="tabla-estilo">
-                <h1>Lista de usuarios</h1> <%--Lista de usuarios registrados--%>
-                    <table>
-                        <thead>
+                <h1>Gestión de Usuarios</h1>
+                
+                <c:if test="${not empty mensajeExito}">
+                    <div style="color: green; text-align: center; margin-bottom: 10px; font-weight: bold;">${mensajeExito}</div>
+                </c:if>
+                <c:if test="${not empty mensajeError}">
+                    <div style="color: red; text-align: center; margin-bottom: 10px; font-weight: bold;">${mensajeError}</div>
+                </c:if>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">ID</th>
+                            <th style="width: 20%;">Nombre</th>
+                            <th style="width: 30%;">Correo</th>
+                            <th style="width: 20%;">Licencia</th>
+                            <th style="width: 25%;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="u" items="${usuarios}">
                             <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Tipo de licencia</th>
+                                <form action="${pageContext.request.contextPath}/actualizarusuario" method="post">
+                                    <td>
+                                        ${u.id}
+                                        <input type="hidden" name="id" value="${u.id}">
+                                    </td>
+                                    <td>${u.nombre}</td>
+                                    <td>
+                                        <input type="email" name="correo" value="${u.correo}" class="input-tabla" required>
+                                    </td>
+                                    <td>
+                                        <select name="tipo_de_licencia" class="select-tabla">
+                                            <option value="Gratuita" ${u.tipo_de_licencia == 'Gratuita' ? 'selected' : ''}>Gratuita</option>
+                                            <option value="Premium" ${u.tipo_de_licencia == 'Premium' ? 'selected' : ''}>Premium</option>
+                                        </select>
+                                    </td>
+                                    <td class="acciones-cell">
+                                        <button type="submit" class="btn-accion btn-guardar">Actualizar</button>
+                                </form> 
+                                        <form action="${pageContext.request.contextPath}/eliminarusuario" method="post" onsubmit="return confirm('¿Estás seguro de eliminar a este usuario?');" style="display:inline;">
+                                            <input type="hidden" name="id" value="${u.id}">
+                                            <button type="submit" class="btn-accion btn-eliminar">Eliminar</button>
+                                        </form>
+                                    </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="usuario" items="${usuarios}">
-                                <tr>
-                                    <td>${usuario.id}</td>
-                                    <td>${usuario.nombre}</td>
-                                    <td>${usuario.correo}</td>
-                                    <td>${usuario.tipo_de_licencia}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </main>
-    <footer>
-        <div class="mensaje-final">
-            <h2>Tu software amigo en el mundo del Origami</h2>
-        </div>
-    </footer>
-</body>
+
+        <footer>
+            <div class="mensaje-final">
+                <h2>Tu software amigo en el mundo del Origami</h2>
+            </div>
+        </footer>
+    </body>
 </html>

@@ -57,7 +57,7 @@
                             <input type="password" placeholder="Ingresa una contraseña..." name="contraseña" required/>
                         </div>
                         <div class="texto-interno3">
-                            <h2>Usa al menos una letra mayúscula, un número y un símbolo especial</h2>
+                            <h2>La contraseña debe tener al menos 8 caracteres, incluyendo un número y un carácter especial</h2>
                         </div>
                         <div class="elementos-internos">
                             <input type="submit" value="Crea tu cuenta" id="boton-crear-cuenta" class="cuentaboton">
