@@ -134,7 +134,7 @@ public class UsuarioServlet extends HttpServlet {
     
     // Validación de la contraseña
 
-        String regex  = "^(?=.*[0-9])(?=.*[!@#$%^&*()_+\\\\-=\\\\[\\\\]{};':\\\"\\\\\\\\|,.<>\\\\/?]).{8,}$";
+        String regex  = "^(?=.*[0-9])(?=.*[!@#$%^&*()_+=\\[\\]{};':\"\\\\|,.<>/?-]).{8,}$";
         
         if (contraseña == null || !Pattern.matches(regex, contraseña)) {
             request.setAttribute("mensajeError", "La contraseña debe tener al menos 8 caracteres, incluyendo un número y un carácter especial.");
