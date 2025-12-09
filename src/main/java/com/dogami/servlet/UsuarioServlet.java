@@ -75,7 +75,7 @@ public class UsuarioServlet extends HttpServlet {
 
             // Inicio de sesión como usuario normal
 
-            String sqlUser = "SELECT nombre FROM usuario WHERE correo = ?";
+            String sqlUser = "SELECT nombre, contraseña FROM usuario WHERE correo = ?";
 
                 try (PreparedStatement pstmtUser = conn.prepareStatement(sqlUser)) {
                     pstmtUser.setString(1, correo);

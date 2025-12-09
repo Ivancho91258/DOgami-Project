@@ -73,12 +73,12 @@
                                     <td>
                                         <select name="tipo_de_licencia" class="select-tabla">
                                             <option value="Gratuita" ${u.tipo_de_licencia == 'Gratuita' ? 'selected' : ''}>Gratuita</option>
-                                            <option value="Premium" ${u.tipo_de_licencia == 'Premium' ? 'selected' : ''}>Premium</option>
+                                            <option value="Mensual" ${u.tipo_de_licencia == 'Mensual' ? 'selected' : ''}>Mensual</option>
                                         </select>
                                     </td>
                                     <td class="acciones-cell">
                                         <button type="submit" class="btn-accion btn-guardar">Actualizar</button>
-                                </form> 
+                                </form>
                                         <form action="${pageContext.request.contextPath}/eliminarusuario" method="post" onsubmit="return confirm('¿Estás seguro de eliminar a este usuario?');" style="display:inline;">
                                             <input type="hidden" name="id" value="${u.id}">
                                             <button type="submit" class="btn-accion btn-eliminar">Eliminar</button>
